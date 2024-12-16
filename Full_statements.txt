@@ -1,0 +1,493 @@
+create table groups (
+	groupID int primary key,
+	groupName varchar (255)
+);
+
+create table subGroup(
+	subGroupID int primary key,
+	subGroupName varchar (255),
+	groupID int,
+	foreign key (groupID) references groups(groupID)
+);
+
+create table Food (
+	foodID int primary key,
+	foodName varchar (255),
+	sciName varchar (255),
+	groupID int,
+	foreign key (groupID) references groups(groupID)
+);
+
+create table country (
+	countryID int primary key,
+	countryName varchar (255)
+);
+
+create table researcher (
+	researcherID int primary key,
+	researcherFName varchar (255),
+	researcherLName varchar (255)
+);
+
+create table vitamin (
+	vitaminID int primary key,
+	vitaminName varchar (255)
+);
+
+create table foodVitamin(
+	foodID int,
+	vitaminID int,
+	primary key (foodID , vitaminID),
+	foreign key(foodID) references food (foodID),
+	foreign key(vitaminID) references vitamin (vitaminID)
+);
+
+create table foodCountry(
+	foodID int,
+	countryID integer,
+	primary key (foodID , countryID),
+	foreign key (foodID) references food (foodID),
+	foreign key (countryID) references country (countryID)
+);
+
+Create table foodResearcher (
+	researcherID int,
+	foodID int,
+	primary key (researcherID, foodID),
+	foreign key (foodID) references food (foodID),
+	foreign key (researcherID) references researcher (researcherID)
+);
+
+
+insert into groups(groupID , groupName) values (1, 'Herbs and Spices');
+insert into groups(groupID , groupName) values (2, 'Vegetables');
+insert into groups(groupID , groupName) values (3, 'Fruits');
+insert into groups(groupID , groupName) values (4, 'Nuts');
+insert into groups(groupID , groupName) values (5, 'Cereals and cereal products');
+insert into groups(groupID , groupName) values (6, 'Milk and milk products');
+
+insert into subGroup (subGroupID , groupID , subGroupName) values (1,1,'Herbs');
+insert into subGroup (subGroupID , groupID , subGroupName) values (2,2,'Cabbages');
+insert into subGroup (subGroupID , groupID , subGroupName) values (3,3,'Tropical fruits');
+insert into subGroup (subGroupID , groupID , subGroupName) values (4,2,'Onion-family vegetables');
+insert into subGroup (subGroupID , groupID , subGroupName) values (5,4,'Nuts');
+insert into subGroup (subGroupID , groupID , subGroupName) values (6,1,'Spices');
+insert into subGroup (subGroupID , groupID , subGroupName) values (7,2,'Root vegetables');
+insert into subGroup (subGroupID , groupID , subGroupName) values (8,2,'Shoot vegetables');
+insert into subGroup (subGroupID , groupID , subGroupName) values (9,5,'Cereals');
+insert into subGroup (subGroupID , groupID , subGroupName) values (10,2,'Leaf vegetables');
+insert into subGroup (subGroupID , groupID , subGroupName) values (11,1,'Oilseed crops');
+insert into subGroup (subGroupID , groupID , subGroupName) values (12,6,'Unfermented milks');
+
+insert into country(countryID, countryName) values (1,'che');
+insert into country(countryID, countryName) values (2,'usa');
+insert into country(countryID, countryName) values (3,'aut');
+insert into country(countryID, countryName) values (4,'gbr');
+insert into country(countryID, countryName) values (5,'sgp');
+insert into country(countryID, countryName) values (6,'can');
+insert into country(countryID, countryName) values (7,'jpn');
+insert into country(countryID, countryName) values (8,'nld');
+insert into country(countryID, countryName) values (9,'esp');
+insert into country(countryID, countryName) values (10,'deu');
+insert into country(countryID, countryName) values (11,'aus');
+insert into country(countryID, countryName) values (12,'chn');
+insert into country(countryID, countryName) values (13,'zaf');
+insert into country(countryID, countryName) values (14,'dnk');
+insert into country(countryID, countryName) values (15,'fra');
+insert into country(countryID, countryName) values (16,'ita');
+
+
+
+insert into Food (foodID, foodName, sciName,groupID) values (1 , 'Angelica', 'Angelica keiskei', 1);
+insert into Food (foodID, foodName, sciName,groupID) values(2 , 'Savoy cabbage', 'Brassica oleracea var. sabauda', 2);
+insert into Food (foodID, foodName, sciName,groupID) values(3 , 'Silver linden', 'Tilia argentea', 1);
+insert into Food (foodID, foodName, sciName,groupID) values(4 , 'Kiwi', 'Actinidia chinensis', 3);
+insert into Food (foodID, foodName, sciName,groupID) values(5 , 'Allium (Onion)', 'Allium', 2);
+insert into Food (foodID, foodName, sciName,groupID) values(6 , 'Garden onion', 'Allium cepa', 2);
+insert into Food (foodID, foodName, sciName,groupID) values(7 , 'Leek', 'Allium porrum', 2);
+insert into Food (foodID, foodName, sciName,groupID) values(8 , 'Garlic', 'Allium sativum', 1);
+insert into Food (foodID, foodName, sciName,groupID) values(9 , 'Chives', 'Allium schoenoprasum', 1);
+insert into Food (foodID, foodName, sciName,groupID) values(10 , 'Lemon verbena', 'Aloysia triphylla', 1);
+insert into Food (foodID, foodName, sciName,groupID) values(11 , 'Cashew nut', 'Anacardium occidentale', 4);
+insert into Food (foodID, foodName, sciName,groupID) values(12 , 'Pineapple', 'Ananas comosus', 3);
+insert into Food (foodID, foodName, sciName,groupID) values(13 , 'Dill', 'Anethum graveolens', 1);
+insert into Food (foodID, foodName, sciName,groupID) values(14 , 'Custard apple', 'Annona reticulata', 3);
+insert into Food (foodID, foodName, sciName,groupID) values(15 , 'Wild celery', 'Apium graveolens', 1);
+insert into Food (foodID, foodName, sciName,groupID) values(16 , 'Peanut', 'Arachis hypogaea', 4);
+insert into Food (foodID, foodName, sciName,groupID) values(17 , 'Burdock', 'Arctium lappa', 2);
+insert into Food (foodID, foodName, sciName,groupID) values(18 , 'Horseradish', 'Armoracia rusticana', 1);
+insert into Food (foodID, foodName, sciName,groupID) values(19 , 'Tarragon', 'Artemisia dracunculus', 1);
+insert into Food (foodID, foodName, sciName,groupID) values(20 , 'Mugwort', 'Artemisia vulgaris', 1);
+insert into Food (foodID, foodName, sciName,groupID) values(21 , 'Asparagus', 'Asparagus officinalis', 2);
+insert into Food (foodID, foodName, sciName,groupID) values(22 , 'Oat', 'Avena sativa', 5);
+insert into Food (foodID, foodName, sciName,groupID) values(23, 'Star fruit', 'Averrhoa carambola', 3);
+insert into Food (foodID, foodName, sciName,groupID) values(24 , 'Brazil nut', 'Bertholletia excelsa', 4);
+insert into Food (foodID, foodName, sciName,groupID) values(25 , 'Common beet', 'Beta vulgaris', 2);
+insert into Food (foodID, foodName, sciName,groupID) values(26, 'Borage', 'Borago officinalis', 1);
+insert into Food (foodID, foodName, sciName,groupID) values(27, 'Chinese mustard', 'Brassica juncea', 2);
+insert into Food (foodID, foodName, sciName,groupID) values(28 , 'Swede', 'Brassica napus', 2);
+insert into Food (foodID, foodName, sciName,groupID) values(29, 'Rape', 'Brassica napus var. napus', 2);
+insert into Food (foodID, foodName, sciName,groupID) values(30, '0% fat pasteurized Cow milk', Null, 6);
+insert into Food (foodID, foodName, sciName,groupID) values(31, '1% fat pasteurized Cow milk', Null, 6);
+insert into Food (foodID, foodName, sciName,groupID) values(32, '2% fat pasteurized Cow milk', Null, 6);
+insert into Food (foodID, foodName, sciName,groupID) values(33, '3.25% fat pasteurized Cow milk', Null, 6);
+
+
+insert into researcher (researcherID, researcherFName,researcherLName) values (1, 'Altman','Douglas');
+insert into researcher (researcherID, researcherFName,researcherLName) values (2, 'Antonietti','Markus');
+insert into researcher (researcherID, researcherFName,researcherLName) values (3, 'Austin','Peter C.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (4, 'Bakker','Arnold B.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (5, 'Barnes','Peter J.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (6, 'Beutler','Bruce');
+insert into researcher (researcherID, researcherFName,researcherLName) values (7, 'Binder','Kurt');
+insert into researcher (researcherID, researcherFName,researcherLName) values (8, 'Bredas',' Jean Luc');
+insert into researcher (researcherID, researcherFName,researcherLName) values (9, 'Campisi','Judith');
+insert into researcher (researcherID, researcherFName,researcherLName) values (10, 'Choi','Dennis W.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (11, 'Clapham','David E.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (12, 'Diener','Ed');
+insert into researcher (researcherID, researcherFName,researcherLName) values (13, 'Dietz','William H.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (14, 'Duman','Ronald S.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (15, 'Eddy','Sean R.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (16, 'Elimelech','Menachem');
+insert into researcher (researcherID, researcherFName,researcherLName) values (17, 'Folkman','Judah');
+insert into researcher (researcherID, researcherFName,researcherLName) values (18, 'Geim','A. K.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (19, 'Halliwell','Barry');
+insert into researcher (researcherID, researcherFName,researcherLName) values (20, 'Hansson','Göran K.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (21, 'Hennekens','Charles H.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (22, 'Hoffmann','Roald');
+insert into researcher (researcherID, researcherFName,researcherLName) values (23, 'Hu','Frank B.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (24, 'Kantarjian','Hagop');
+insert into researcher (researcherID, researcherFName,researcherLName) values (25, 'Karin','Michael');
+insert into researcher (researcherID, researcherFName,researcherLName) values (26, 'Kroemer','Guido');
+insert into researcher (researcherID, researcherFName,researcherLName) values (27, 'Kroenke','Kurt');
+insert into researcher (researcherID, researcherFName,researcherLName) values (28, 'Lal','Rattan');
+insert into researcher (researcherID, researcherFName,researcherLName) values (29, 'Li','Chao Jun');
+insert into researcher (researcherID, researcherFName,researcherLName) values (30, 'Manthiram','Arumugam');
+insert into researcher (researcherID, researcherFName,researcherLName) values (31, 'Marks','Tobin J.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (32, 'McEwen','Bruce S.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (33, 'Meaney',' Michael J.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (34, 'Murray','Christopher J.L.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (35, 'Neese','Frank');
+insert into researcher (researcherID, researcherFName,researcherLName) values (36, 'Novoselov','Kostya S.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (37, 'Orkin','Stuart H.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (38, 'Ostrom','Elinor');
+insert into researcher (researcherID, researcherFName,researcherLName) values (39, 'Pedersen','Bente K.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (40, 'Pentland','Alex');
+insert into researcher (researcherID, researcherFName,researcherLName) values (41, 'Perdew','John P.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (42, 'Pocock','Stuart J.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (43, 'Prockop','D. J.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (44, 'Ridker','Paul M.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (45, 'Sachdev','Subir');
+insert into researcher (researcherID, researcherFName,researcherLName) values (46, 'Schmidhuber','Jürgen');
+insert into researcher (researcherID, researcherFName,researcherLName) values (47, 'Semenza','Gregg L.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (48, 'Sheikholeslami',',M.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (49, 'Sheldrick','George M.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (50, 'Sibai','Baha M.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (51, 'Smith','Stephen');
+insert into researcher (researcherID, researcherFName,researcherLName) values (52, 'Szabo','Csaba');
+insert into researcher (researcherID, researcherFName,researcherLName) values (53, 'Tilman','David');
+insert into researcher (researcherID, researcherFName,researcherLName) values (54, 'Tuomilehto','Jaakko');
+insert into researcher (researcherID, researcherFName,researcherLName) values (55, 'Van Genuchten','Martinus Th');
+insert into researcher (researcherID, researcherFName,researcherLName) values (56, 'Vasan','Ramachandran S.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (57, 'Whitesides','George M.');
+insert into researcher (researcherID, researcherFName,researcherLName) values (58, 'Wittchen','Hans Ulrich');
+insert into researcher (researcherID, researcherFName,researcherLName) values (59, 'Yablonovitch','Eli');
+insert into researcher (researcherID, researcherFName,researcherLName) values (60, 'Yusuf','Salim');
+insert into researcher (researcherID, researcherFName,researcherLName) values (61, 'Zhu','Jian Kang');
+
+
+insert into vitamin(vitaminID , vitaminName) values (1,'Vitamin A');
+insert into vitamin(vitaminID , vitaminName) values (2,'Vitamin B1');
+insert into vitamin(vitaminID , vitaminName) values (3,'Vitamin B2');
+insert into vitamin(vitaminID , vitaminName) values (4,'Vitamin B3');
+insert into vitamin(vitaminID , vitaminName) values (5,'Vitamin B4');
+insert into vitamin(vitaminID , vitaminName) values (6,'Vitamin B5');
+insert into vitamin(vitaminID , vitaminName) values (7,'Vitamin B6');
+insert into vitamin(vitaminID , vitaminName) values (8,'Vitamin B7');
+insert into vitamin(vitaminID , vitaminName) values (9,'Vitamin B10');
+insert into vitamin(vitaminID , vitaminName) values (10,'Vitamin B11');
+insert into vitamin(vitaminID , vitaminName) values (11,'Vitamin B12');
+insert into vitamin(vitaminID , vitaminName) values (12,'Vitamin B14');
+insert into vitamin(vitaminID , vitaminName) values (13,'Vitamin C');
+insert into vitamin(vitaminID , vitaminName) values (14,'Vitamin D');
+insert into vitamin(vitaminID , vitaminName) values (15,'Folate (folic acid)');
+
+insert into foodVitamin(foodID , vitaminID) values (1,1);
+insert into foodVitamin(foodID , vitaminID) values (1,2);
+insert into foodVitamin(foodID , vitaminID) values (1,3);
+insert into foodVitamin(foodID , vitaminID) values (2,7);
+insert into foodVitamin(foodID , vitaminID) values (2,13);
+insert into foodVitamin(foodID , vitaminID) values (3,13);
+insert into foodVitamin(foodID , vitaminID) values (3,14);
+insert into foodVitamin(foodID , vitaminID) values (3,15);
+insert into foodVitamin(foodID , vitaminID) values (4,1);
+insert into foodVitamin(foodID , vitaminID) values (4,2);
+insert into foodVitamin(foodID , vitaminID) values (4,3);
+insert into foodVitamin(foodID , vitaminID) values (5,1);
+insert into foodVitamin(foodID , vitaminID) values (5,7);
+insert into foodVitamin(foodID , vitaminID) values (5,13);
+insert into foodVitamin(foodID , vitaminID) values (6,14);
+insert into foodVitamin(foodID , vitaminID) values (6,6);
+insert into foodVitamin(foodID , vitaminID) values (6,15);
+insert into foodVitamin(foodID , vitaminID) values (7,4);
+insert into foodVitamin(foodID , vitaminID) values (7,7);
+insert into foodVitamin(foodID , vitaminID) values (8,1);
+insert into foodVitamin(foodID , vitaminID) values (8,5);
+insert into foodVitamin(foodID , vitaminID) values (9,14);
+insert into foodVitamin(foodID , vitaminID) values (9,8);
+insert into foodVitamin(foodID , vitaminID) values (10,2);
+insert into foodVitamin(foodID , vitaminID) values (10,4);
+insert into foodVitamin(foodID , vitaminID) values (11,12);
+insert into foodVitamin(foodID , vitaminID) values (11,11);
+insert into foodVitamin(foodID , vitaminID) values (11,15);
+insert into foodVitamin(foodID , vitaminID) values (12,2);
+insert into foodVitamin(foodID , vitaminID) values (12,7);
+insert into foodVitamin(foodID , vitaminID) values (13,13);
+insert into foodVitamin(foodID , vitaminID) values (13,4);
+insert into foodVitamin(foodID , vitaminID) values (13,14);
+insert into foodVitamin(foodID , vitaminID) values (14,10);
+insert into foodVitamin(foodID , vitaminID) values (14,14);
+insert into foodVitamin(foodID , vitaminID) values (14,1);
+insert into foodVitamin(foodID , vitaminID) values (15,9);
+insert into foodVitamin(foodID , vitaminID) values (15,7);
+insert into foodVitamin(foodID , vitaminID) values (15,2);
+insert into foodVitamin(foodID , vitaminID) values (16,13);
+insert into foodVitamin(foodID , vitaminID) values (16,4);
+insert into foodVitamin(foodID , vitaminID) values (16,15);
+insert into foodVitamin(foodID , vitaminID) values (17,1);
+insert into foodVitamin(foodID , vitaminID) values (17,5);
+insert into foodVitamin(foodID , vitaminID) values (18,13);
+insert into foodVitamin(foodID , vitaminID) values (18,7);
+insert into foodVitamin(foodID , vitaminID) values (18,15);
+insert into foodVitamin(foodID , vitaminID) values (19,14);
+insert into foodVitamin(foodID , vitaminID) values (19,1);
+insert into foodVitamin(foodID , vitaminID) values (20,13);
+insert into foodVitamin(foodID , vitaminID) values (20,1);
+insert into foodVitamin(foodID , vitaminID) values (20,14);
+insert into foodVitamin(foodID , vitaminID) values (21,13);
+insert into foodVitamin(foodID , vitaminID) values (22,14);
+insert into foodVitamin(foodID , vitaminID) values (22,1);
+insert into foodVitamin(foodID , vitaminID) values (23,13);
+insert into foodVitamin(foodID , vitaminID) values (24,14);
+insert into foodVitamin(foodID , vitaminID) values (24,1);
+insert into foodVitamin(foodID , vitaminID) values (24,15);
+insert into foodVitamin(foodID , vitaminID) values (25,7);
+insert into foodVitamin(foodID , vitaminID) values (26,14);
+insert into foodVitamin(foodID , vitaminID) values (26,7);
+insert into foodVitamin(foodID , vitaminID) values (27,1);
+insert into foodVitamin(foodID , vitaminID) values (27,4);
+insert into foodVitamin(foodID , vitaminID) values (28,14);
+insert into foodVitamin(foodID , vitaminID) values (28,5);
+insert into foodVitamin(foodID , vitaminID) values (29,2);
+insert into foodVitamin(foodID , vitaminID) values (29,4);
+insert into foodVitamin(foodID , vitaminID) values (30,14);
+insert into foodVitamin(foodID , vitaminID) values (30,15);
+insert into foodVitamin(foodID , vitaminID) values (30,1);
+insert into foodVitamin(foodID , vitaminID) values (31,4);
+insert into foodVitamin(foodID , vitaminID) values (31,7);
+insert into foodVitamin(foodID , vitaminID) values (31,1);
+insert into foodVitamin(foodID , vitaminID) values (31,14);
+insert into foodVitamin(foodID , vitaminID) values (32,1);
+insert into foodVitamin(foodID , vitaminID) values (32,5);
+insert into foodVitamin(foodID , vitaminID) values (32,14);
+insert into foodVitamin(foodID , vitaminID) values (33,14);
+insert into foodVitamin(foodID , vitaminID) values (33,8);
+
+insert into foodCountry (foodID , countryID) values (1,1);
+insert into foodCountry (foodID , countryID) values (1,10);
+insert into foodCountry (foodID , countryID) values (1,12);
+insert into foodCountry (foodID , countryID) values (1,15);
+insert into foodCountry (foodID , countryID) values (2,2);
+insert into foodCountry (foodID , countryID) values (2,11);
+insert into foodCountry (foodID , countryID) values (2,7);
+insert into foodCountry (foodID , countryID) values (2,16);
+insert into foodCountry (foodID , countryID) values (3,2);
+insert into foodCountry (foodID , countryID) values (3,5);
+insert into foodCountry (foodID , countryID) values (3,9);
+insert into foodCountry (foodID , countryID) values (3,10);
+insert into foodCountry (foodID , countryID) values (4,2);
+insert into foodCountry (foodID , countryID) values (4,6);
+insert into foodCountry (foodID , countryID) values (4,11);
+insert into foodCountry (foodID , countryID) values (5,3);
+insert into foodCountry (foodID , countryID) values (5,2);
+insert into foodCountry (foodID , countryID) values (5,13);
+insert into foodCountry (foodID , countryID) values (5,11);
+insert into foodCountry (foodID , countryID) values (6,4);
+insert into foodCountry (foodID , countryID) values (6,9);
+insert into foodCountry (foodID , countryID) values (6,2);
+insert into foodCountry (foodID , countryID) values (7,2);
+insert into foodCountry (foodID , countryID) values (7,12);
+insert into foodCountry (foodID , countryID) values (7,11);
+insert into foodCountry (foodID , countryID) values (7,4);
+insert into foodCountry (foodID , countryID) values (8,2);
+insert into foodCountry (foodID , countryID) values (8,7);
+insert into foodCountry (foodID , countryID) values (8,14);
+insert into foodCountry (foodID , countryID) values (9,2);
+insert into foodCountry (foodID , countryID) values (9,9);
+insert into foodCountry (foodID , countryID) values (9,4);
+insert into foodCountry (foodID , countryID) values (9,15);
+insert into foodCountry (foodID , countryID) values (10,4);
+insert into foodCountry (foodID , countryID) values (10,2);
+insert into foodCountry (foodID , countryID) values (10,11);
+insert into foodCountry (foodID , countryID) values (10,16);
+insert into foodCountry (foodID , countryID) values (11,4);
+insert into foodCountry (foodID , countryID) values (11,13);
+insert into foodCountry (foodID , countryID) values (11,2);
+insert into foodCountry (foodID , countryID) values (11,10);
+insert into foodCountry (foodID , countryID) values (12,5);
+insert into foodCountry (foodID , countryID) values (12,4);
+insert into foodCountry (foodID , countryID) values (12,11);
+insert into foodCountry (foodID , countryID) values (13,2);
+insert into foodCountry (foodID , countryID) values (13,11);
+insert into foodCountry (foodID , countryID) values (13,14);
+insert into foodCountry (foodID , countryID) values (14,6);
+insert into foodCountry (foodID , countryID) values (14,2);
+insert into foodCountry (foodID , countryID) values (14,15);
+insert into foodCountry (foodID , countryID) values (15,2);
+insert into foodCountry (foodID , countryID) values (15,4);
+insert into foodCountry (foodID , countryID) values (15,16);
+insert into foodCountry (foodID , countryID) values (16,2);
+insert into foodCountry (foodID , countryID) values (16,14);
+insert into foodCountry (foodID , countryID) values (16,10);
+insert into foodCountry (foodID , countryID) values (17,2);
+insert into foodCountry (foodID , countryID) values (17,15);
+insert into foodCountry (foodID , countryID) values (17,11);
+insert into foodCountry (foodID , countryID) values (18,2);
+insert into foodCountry (foodID , countryID) values (18,16);
+insert into foodCountry (foodID , countryID) values (18,11);
+insert into foodCountry (foodID , countryID) values (19,2);
+insert into foodCountry (foodID , countryID) values (19,13);
+insert into foodCountry (foodID , countryID) values (20,7);
+insert into foodCountry (foodID , countryID) values (20,4);
+insert into foodCountry (foodID , countryID) values (21,6);
+insert into foodCountry (foodID , countryID) values (21,11);
+insert into foodCountry (foodID , countryID) values (21,14);
+insert into foodCountry (foodID , countryID) values (22,2);
+insert into foodCountry (foodID , countryID) values (22,15);
+insert into foodCountry (foodID , countryID) values (23,2);
+insert into foodCountry (foodID , countryID) values (23,4);
+insert into foodCountry (foodID , countryID) values (23,16);
+insert into foodCountry (foodID , countryID) values (24,2);
+insert into foodCountry (foodID , countryID) values (24,14);
+insert into foodCountry (foodID , countryID) values (24,10);
+insert into foodCountry (foodID , countryID) values (25,2);
+insert into foodCountry (foodID , countryID) values (25,15);
+insert into foodCountry (foodID , countryID) values (25,11);
+insert into foodCountry (foodID , countryID) values (26,8);
+insert into foodCountry (foodID , countryID) values (26,16);
+insert into foodCountry (foodID , countryID) values (26,11);
+insert into foodCountry (foodID , countryID) values (27,2);
+insert into foodCountry (foodID , countryID) values (27,10);
+insert into foodCountry (foodID , countryID) values (28,9);
+insert into foodCountry (foodID , countryID) values (28,11);
+insert into foodCountry (foodID , countryID) values (28,4);
+insert into foodCountry (foodID , countryID) values (29,2);
+insert into foodCountry (foodID , countryID) values (29,5);
+insert into foodCountry (foodID , countryID) values (29,14);
+insert into foodCountry (foodID , countryID) values (30,2);
+insert into foodCountry (foodID , countryID) values (30,6);
+insert into foodCountry (foodID , countryID) values (30,15);
+insert into foodCountry (foodID , countryID) values (31,2);
+insert into foodCountry (foodID , countryID) values (31,16);
+insert into foodCountry (foodID , countryID) values (32,2);
+insert into foodCountry (foodID , countryID) values (32,9);
+insert into foodCountry (foodID , countryID) values (32,10);
+insert into foodCountry (foodID , countryID) values (33,2);
+insert into foodCountry (foodID , countryID) values (33,12);
+insert into foodCountry (foodID , countryID) values (33,11);
+
+
+insert into foodResearcher (foodID, researcherID) values (1,12);
+insert into foodResearcher (foodID, researcherID) values (1,44);
+insert into foodResearcher (foodID, researcherID) values (1,45);
+insert into foodResearcher (foodID, researcherID) values (2,32);
+insert into foodResearcher (foodID, researcherID) values (2,53);
+insert into foodResearcher (foodID, researcherID) values (2,8);
+insert into foodResearcher (foodID, researcherID) values (3,46);
+insert into foodResearcher (foodID, researcherID) values (3,34);
+insert into foodResearcher (foodID, researcherID) values (3,48);
+insert into foodResearcher (foodID, researcherID) values (4,23);
+insert into foodResearcher (foodID, researcherID) values (4,37);
+insert into foodResearcher (foodID, researcherID) values (4,57);
+insert into foodResearcher (foodID, researcherID) values (5,7);
+insert into foodResearcher (foodID, researcherID) values (5,26);
+insert into foodResearcher (foodID, researcherID) values (5,28);
+insert into foodResearcher (foodID, researcherID) values (6,51);
+insert into foodResearcher (foodID, researcherID) values (6,3);
+insert into foodResearcher (foodID, researcherID) values (6,22);
+insert into foodResearcher (foodID, researcherID) values (7,38);
+insert into foodResearcher (foodID, researcherID) values (7,21);
+insert into foodResearcher (foodID, researcherID) values (7,4);
+insert into foodResearcher (foodID, researcherID) values (8,18);
+insert into foodResearcher (foodID, researcherID) values (8,11);
+insert into foodResearcher (foodID, researcherID) values (8,35);
+insert into foodResearcher (foodID, researcherID) values (9,32);
+insert into foodResearcher (foodID, researcherID) values (9,15);
+insert into foodResearcher (foodID, researcherID) values (9,36);
+insert into foodResearcher (foodID, researcherID) values (10,5);
+insert into foodResearcher (foodID, researcherID) values (10,56);
+insert into foodResearcher (foodID, researcherID) values (10,61);
+insert into foodResearcher (foodID, researcherID) values (11,1);;
+insert into foodResearcher (foodID, researcherID) values (11,42);
+insert into foodResearcher (foodID, researcherID) values (11,3);
+insert into foodResearcher (foodID, researcherID) values (12,19);
+insert into foodResearcher (foodID, researcherID) values (12,16);
+insert into foodResearcher (foodID, researcherID) values (12,49);
+insert into foodResearcher (foodID, researcherID) values (13,25);
+insert into foodResearcher (foodID, researcherID) values (13,54);
+insert into foodResearcher (foodID, researcherID) values (13,33);
+insert into foodResearcher (foodID, researcherID) values (14,60);
+insert into foodResearcher (foodID, researcherID) values (14,9);
+insert into foodResearcher (foodID, researcherID) values (14,43);
+insert into foodResearcher (foodID, researcherID) values (15,41);
+insert into foodResearcher (foodID, researcherID) values (15,52);
+insert into foodResearcher (foodID, researcherID) values (15,13);
+insert into foodResearcher (foodID, researcherID) values (16,14);
+insert into foodResearcher (foodID, researcherID) values (16,40);
+insert into foodResearcher (foodID, researcherID) values (16,47);
+insert into foodResearcher (foodID, researcherID) values (17,17);
+insert into foodResearcher (foodID, researcherID) values (17,6);
+insert into foodResearcher (foodID, researcherID) values (18,44);
+insert into foodResearcher (foodID, researcherID) values (18,39);
+insert into foodResearcher (foodID, researcherID) values (18,12);
+insert into foodResearcher (foodID, researcherID) values (19,53);
+insert into foodResearcher (foodID, researcherID) values (19,32);
+insert into foodResearcher (foodID, researcherID) values (19,58);
+insert into foodResearcher (foodID, researcherID) values (20,20);
+insert into foodResearcher (foodID, researcherID) values (20,34);
+insert into foodResearcher (foodID, researcherID) values (20,46);
+insert into foodResearcher (foodID, researcherID) values (21,31);
+insert into foodResearcher (foodID, researcherID) values (21,57);
+insert into foodResearcher (foodID, researcherID) values (21,23);
+insert into foodResearcher (foodID, researcherID) values (22,26);
+insert into foodResearcher (foodID, researcherID) values (22,28);
+insert into foodResearcher (foodID, researcherID) values (22,55);
+insert into foodResearcher (foodID, researcherID) values (23,3);
+insert into foodResearcher (foodID, researcherID) values (23,51);
+insert into foodResearcher (foodID, researcherID) values (23,59);
+insert into foodResearcher (foodID, researcherID) values (24,4);
+insert into foodResearcher (foodID, researcherID) values (24,10);
+insert into foodResearcher (foodID, researcherID) values (24,38);
+insert into foodResearcher (foodID, researcherID) values (25,35);
+insert into foodResearcher (foodID, researcherID) values (25,50);
+insert into foodResearcher (foodID, researcherID) values (25,18);
+insert into foodResearcher (foodID, researcherID) values (26,36);
+insert into foodResearcher (foodID, researcherID) values (26,32);
+insert into foodResearcher (foodID, researcherID) values (26,2);
+insert into foodResearcher (foodID, researcherID) values (27,61);
+insert into foodResearcher (foodID, researcherID) values (27,29);
+insert into foodResearcher (foodID, researcherID) values (27,5);
+insert into foodResearcher (foodID, researcherID) values (28,30);
+insert into foodResearcher (foodID, researcherID) values (28,1);
+insert into foodResearcher (foodID, researcherID) values (28,27);
+insert into foodResearcher (foodID, researcherID) values (29,19);
+insert into foodResearcher (foodID, researcherID) values (29,49);
+insert into foodResearcher (foodID, researcherID) values (29,24);
+insert into foodResearcher (foodID, researcherID) values (30,47);
+insert into foodResearcher (foodID, researcherID) values (30,33);
+insert into foodResearcher (foodID, researcherID) values (31,17);
+insert into foodResearcher (foodID, researcherID) values (31,43);
+insert into foodResearcher (foodID, researcherID) values (32,44);
+insert into foodResearcher (foodID, researcherID) values (32,13);
+insert into foodResearcher (foodID, researcherID) values (33,53);
+insert into foodResearcher (foodID, researcherID) values (33,40);
